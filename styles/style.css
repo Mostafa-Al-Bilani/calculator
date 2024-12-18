@@ -1,0 +1,44 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: gray;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.calculator{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+}
+
+.row{
+    display: flex;
+    width: 300px;
+}
+
+.button{
+    background-color: white;
+    width: 100px;
+    height: 90px;
+    color: black;
+    text-align: center;
+    border: 5px solid blue;
+}
+
+.screen {
+    background-color: red;
+    width: 300px;
+    height: 120px;
+}
