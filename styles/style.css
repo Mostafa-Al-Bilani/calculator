@@ -31,7 +31,8 @@ h2 {
 }
 
 .row {
-  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
   display: flex;
   width: 100%;
   gap: 5px;
@@ -53,6 +54,7 @@ h2 {
   color: white;
   text-align: center;
   border-radius: 50%;
+  cursor: pointer;
 }
 .button.operator {
   color: #6dd144;
@@ -60,16 +62,109 @@ h2 {
 .button.equal {
     background-color: #6DD144;
     color: white;
+    width: 165px;
+    height: 80px;
+    border-radius: 10%;
 }
 .button.clear{
     color: #E17064;
 }
 
 #screen {
+  display: flex;
+  flex-direction: column;
   background-color: #171717;
   width: 95%;
   height: 120px;
   color: white;
   margin: auto;
   border-radius: 5px;
+}
+#controls {
+  height: fit-content;
+  padding: 8px;
+}
+
+.togglecontainer{
+  display: flex;
+  flex-direction: column;
+}
+
+#display {
+  font-size: 24px;
+  padding: 8px;
+  height: 100%
+}
+
+
+
+
+
+
+
+
+
+/* this css was taken from w3school source: https://www.w3schools.com/howto/howto_css_switch.asp */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;  
+  width: 50px;
+  height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

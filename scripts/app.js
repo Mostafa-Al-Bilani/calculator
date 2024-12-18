@@ -2,7 +2,7 @@ let screen_value = [];
 let have_operator = false;
 
 function display(value) {
-  const screen = document.getElementById("screen");
+  const screen = document.getElementById("display");
   const intial_value = screen.innerHTML;
   screen.innerHTML = intial_value + value;
 }
@@ -15,7 +15,6 @@ document
   .querySelectorAll(".operator")
   .forEach((elem) => elem.addEventListener("click", operatorClick));
 
-console.log("hi");
 
 function numberClick() {
   const clicked = this.id;

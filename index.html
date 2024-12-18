@@ -11,37 +11,44 @@
     <h2>postfix/prefix Calculator</h2>
     <div class="calculator">
       <div id="screen">
+        <div id="display"></div>
+        <div id="controls">
+          <div class="togglecontainer"><p>postfix/prefix</p>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>  
       </div>
       <div class="buttonscontainer">
         <div class="row">
           <div class="button clear">C</div>
           <div class="button">D</div>
-          <div class="button" id ="space">Space</div>
-
-
-        </div>
-        <div class="row">
-          <div class="button operator" id="*">x</div>
-          <div class="button operator" id="-">-</div>
-          <div class="button operator" id="+">+</div>
+          <div class="button" id="enter">Enter</div>
           <div class="button operator" id="/">/</div>
         </div>
         <div class="row">
-          <div class="button number" id ="1">1</div>
-          <div class="button number" id ="2">2</div>
-          <div class="button number" id ="3">3</div>
-          <div class="button number" id ="4">4</div>
+          <div class="button number" id="7">7</div>
+          <div class="button number" id="8">8</div>
+          <div class="button number" id="9">9</div>
+          <div class="button operator" id="*">x</div>
         </div>
         <div class="row">
-          <div class="button number" id ="5">5</div>
-          <div class="button number" id ="6">6</div>
-          <div class="button number" id ="7">7</div>
-          <div class="button number" id ="8">8</div>
+          <div class="button number" id="4">4</div>
+          <div class="button number" id="5">5</div>
+          <div class="button number" id="6">6</div>
+          <div class="button operator" id="-">-</div>
         </div>
         <div class="row">
-          <div class="button number" id ="9">9</div>
-          <div class="button number" id ="0">0</div>
-          <div class="button dot">.</div>
+          <div class="button number" id="1">1</div>
+          <div class="button number" id="2">2</div>
+          <div class="button number" id="3">3</div>
+          <div class="button operator" id="+">+</div>
+        </div>
+        <div class="row lastrow">
+          <div class="button">.</div>
+          <div class="button number" id="0">0</div>
           <div class="button equal">=</div>
         </div>
       </div>
