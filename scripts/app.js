@@ -1,3 +1,4 @@
+// screen value = [{value : "+" or "*" or 12 ..., type:"number" or "operator" }]
 let screen_value = [];
 let temp_number = "";
 let is_postfix = true;
@@ -18,11 +19,11 @@ document
   .querySelectorAll(".switch")
   .forEach((elem) => elem.addEventListener("click", toggleClick));
 
-// document.getElementById("=").addEventListener("click", equalPostFix);
+document.getElementById("=").addEventListener("click", equalClick);
 
-document
-  .querySelectorAll(".button")
-  .forEach((elem) => elem.addEventListener("click", blink));
+// document
+//   .querySelectorAll(".button")
+//   .forEach((elem) => elem.addEventListener("click", blink));
 
 function display(value) {
   const screen = document.getElementById("display");
@@ -31,17 +32,16 @@ function display(value) {
 }
 
 function numberClick() {
-  if (is_postfix == false && screen_value ==[]){
+  if (!is_postfix && screen_value.length == 0){
     return
   }
   const clicked = this.id;
   temp_number += clicked;
-  console.log(temp_number);
   display(clicked);
 }
 
 function operatorClick() {
-  if ((is_postfix == true && screen_value.length > 2)) {
+  if ((is_postfix && screen_value.length < 2)) {
     return;
   }
   if (temp_number != "") {
@@ -49,7 +49,8 @@ function operatorClick() {
   }
   const clicked = this.id;
   display(clicked + " ");
-  screen_value.push(clicked);
+  screen_value.push({value : clicked, type : "operator"});
+  console.log(screen_value)
 }
 
 function toggleClick() {
@@ -58,14 +59,14 @@ function toggleClick() {
   clear();
 }
 
-function blink() {
-  const blinked = this.id;
-  const blink_color = document.getElementById(blinked);
-  blink_color.style.backgroundColor = "gray";
-  setTimeout(() => {
-    blink_color.style.backgroundColor = "black";
-  }, 1000);
-}
+// function blink() {
+//   const blinked = this.id;
+//   const blink_color = document.getElementById(blinked);
+//   blink_color.style.backgroundColor = "gray";
+//   setTimeout(() => {
+//     blink_color.style.backgroundColor = "black";
+//   }, 1000);
+// }
 
 function actionClick() {
   const clicked = this.id;
@@ -73,7 +74,7 @@ function actionClick() {
     // when enter is pressed we push the temp number into the array
     // when enter is emptyfF
     if (temp_number != "") {
-      screen_value.push(temp_number);
+      screen_value.push({value : parseFloat(temp_number), type : "number"});
       temp_number = "";
       const screen = document.getElementById("display");
       screen.innerHTML += " ";
@@ -111,17 +112,21 @@ function clear() {
   screen.innerHTML = "";
 }
 
-function equal(clicked) {
-  if(screen_value == []){
+function equalClick() {
+  if(screen_value.length == 0){
+    console.log("if the user has not entred anything yet")
     return
   }
   if(temp_number != ""){
+    console.log("if the use has not pressed enter while inputing a number")
     return
   }
-  if(is_postfix == true && !isNaN(screen_value[screen_value.length - 1])){
+  if(is_postfix && screen_value[screen_value.length - 1].type == "number"){
+    console.log("it is a postfix and the last item is a number")
     return
   }
-  if(is_postfix ==false && isNaN(screen_value[screen_value.length - 1])){
+  if(!is_postfix && screen_value[screen_value.length - 1].type == "operator"){
+    console.log("it is a prefix and the last item is an operator")
     return
   }
 }
