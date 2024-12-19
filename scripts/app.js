@@ -13,6 +13,10 @@ document
   .querySelectorAll(".action")
   .forEach((elem) => elem.addEventListener("click", actionClick));
 
+document
+  .querySelectorAll(".switch")
+  .forEach((elem) => elem.addEventListener("click", toggleClick));
+
 function display(value) {
   const screen = document.getElementById("display");
   const intial_value = screen.innerHTML;
@@ -28,12 +32,19 @@ function numberClick() {
 
 function operatorClick() {
   // if (screen_value.length < 2) return; for postfix
-  if (temp_number != ""){
-    return  
+  if (temp_number != "") {
+    return;
   }
   const clicked = this.id;
   display(clicked + " ");
   screen_value.push(clicked);
+}
+
+function toggleClick() {
+  screen_value = [];
+    temp_number = "";
+    const screen = document.getElementById("display");
+    screen.innerHTML = ""
 }
 
 function actionClick() {
@@ -58,10 +69,10 @@ function actionClick() {
       screen_value.pop();
       const screen = document.getElementById("display");
       const separate_entries = screen.innerHTML.split(" ");
-      console.log("old",separate_entries)
-      separate_entries.splice(separate_entries.length - 2, 1)
-      console.log("new",separate_entries)
-      const new_display = separate_entries.join(" ")
+      console.log("old", separate_entries);
+      separate_entries.splice(separate_entries.length - 2, 1);
+      console.log("new", separate_entries);
+      const new_display = separate_entries.join(" ");
       screen.innerHTML = new_display;
     } else {
       const screen = document.getElementById("display");
