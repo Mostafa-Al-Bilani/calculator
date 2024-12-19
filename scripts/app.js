@@ -24,7 +24,9 @@ document
 
 document.getElementById("=").addEventListener("click", equalClick);
 
-document.getElementById("toggle-mode").addEventListener("change", toggleThemeMode);
+document
+  .getElementById("toggle-theme-mode")
+  .addEventListener("change", toggleThemeMode);
 
 document
   .querySelectorAll(".button")
@@ -34,26 +36,30 @@ document.getElementById("close").addEventListener("click", closeButton);
 
 document.getElementById("open").addEventListener("click", openButton);
 
-function closeButton() {
-  document.getElementById("tutorial").style.display = "none";
-}
-
+// opens the tutorial pop-up
 function openButton() {
   document.getElementById("tutorial").style.display = "flex";
 }
 
+// closes the tutorial pop-up
+function closeButton() {
+  document.getElementById("tutorial").style.display = "none";
+}
+
+// add a color effect when clicking a button
 function blink() {
   const blinked = this.id;
   const blink_color = document.getElementById(blinked);
 
-  blink_color.classList.add("blink")
+  blink_color.classList.add("blink");
 
-  //remove 
+  // remove the blink class after 200ms
   setTimeout(() => {
-  blink_color.classList.remove("blink")
-  }, 200); 
+    blink_color.classList.remove("blink");
+  }, 200);
 }
 
+// appends a new text to the screen
 function display(value) {
   const screen = document.getElementById("display");
   const intial_value = screen.innerHTML;
@@ -61,11 +67,13 @@ function display(value) {
   screen.innerHTML = intial_value + value;
 }
 
+// shows final result on the screen
 function displayResult(result) {
   const screen = document.getElementById("display");
   screen.innerHTML = result;
 }
 
+// resets everything(the displayed screen, the memory and the result)
 function clear() {
   memory = [];
   temp_number = "";
@@ -74,11 +82,15 @@ function clear() {
   is_showing_results = false;
 }
 
+// changes between modes : postfix - prefix
 function toggleModeClick() {
   is_postfix = !is_postfix;
+
+  // we clear everything after changing modes since each mode has different rules
   clear();
 }
 
+// changes between themes : dark mode - light mode
 function toggleThemeMode() {
   is_darkmode = !is_darkmode;
   if (is_darkmode) {
@@ -89,10 +101,11 @@ function toggleThemeMode() {
 }
 
 function numberClick() {
+  // if there is a result and a number is pressed we clear everything
   if (is_showing_results) {
     clear();
   }
-
+  // condition for prefixmode: can't start with a number
   if (!is_postfix && memory.length == 0) {
     return;
   }
@@ -106,11 +119,11 @@ function operatorClick() {
   if (is_showing_results) {
     clear();
   }
-
+  // postfix condition: can't input an operator unless there is 2 numbers before it
   if (is_postfix && memory.length < 2) {
     return;
   }
-
+  // can't enter an operator while temp number is still not pushed into memory
   if (temp_number != "") {
     return;
   }
@@ -123,28 +136,33 @@ function operatorClick() {
 function actionClick() {
   const clicked = this.id;
   if (clicked == "enter") {
-    // when enter is pressed we push the temp number into the array
-    // when enter is emptyfF
+    // if temp_number is not empty and enter is clicked
     if (temp_number != "") {
+      // we push emp_number into memory after chaning it into a float
       memory.push({ value: parseFloat(temp_number), type: "number" });
+      // we update temp_number to empty
       temp_number = "";
       const screen = document.getElementById("display");
-      screen.innerHTML += " ";
+      // we add a space between the list items for display purposes
+      screen.innerHTML += " "; 
     }
   } else if (clicked == "delete") {
+    // if there is no memory and the value of temp_number is empty there no need for delete
     if (memory.length == 0 && temp_number == "") {
       return;
     }
-    // if (tempnmber ==>  empty) then I can remove last item from array and last item from diaplay
-    // if temp is not empty then I can oly remove from display
+    // if temp_number is empty this means we have to delete the whole number from the memory
+    // if temp_number is not empty then this means we can only remove from screen and not the array
     if (temp_number == "") {
       memory.pop();
+      // we update the display by removing the last item while keeping the spacing 
       const screen = document.getElementById("display");
       const separate_entries = screen.innerHTML.split(" ");
       separate_entries.splice(separate_entries.length - 2, 1);
       const new_display = separate_entries.join(" ");
       screen.innerHTML = new_display;
     } else {
+      // we update the display by removing the last number
       const screen = document.getElementById("display");
       screen.innerHTML = screen.innerHTML.slice(0, -1);
       temp_number = temp_number.slice(0, -1);
@@ -154,17 +172,16 @@ function actionClick() {
   }
 }
 
-
 function evaluatePostFix() {
   const postfix_stack = [];
-  //we nee to loop over the array of values
+  //we loop over the memory
   for (let i = 0; i < memory.length; i++) {
-    // we then have to check type of each value
+    // we then check the type of each value
     const type = memory[i].type;
     const value = memory[i].value;
 
     if (type == "number") {
-      // if it's a number we push into the stach
+      // if it's a number we push into postfix_stack
       postfix_stack.push(value);
     } else {
       // if it's an operator we pop the 2 numbers before it
@@ -185,19 +202,20 @@ function evaluatePostFix() {
       postfix_stack.push(result);
     }
   }
+  // finally it returns the last remaining number after the loop is finished
   return postfix_stack[0];
 }
 
 function evaluatePreFix() {
   const prefix_stack = [];
-  //we nee to loop over the array of values from right to left
+  //we loop over the memory of values from right to left
   for (let i = memory.length - 1; i >= 0; i--) {
-    // we then have to check type of each value
+    // we then the check type of each value
     const type = memory[i].type;
     const value = memory[i].value;
 
     if (type == "number") {
-      // if it's a number we push into the stach
+      // if it's a number we push into prefix_stack
       prefix_stack.push(value);
     } else {
       // if it's an operator we pop the 2 numbers before it
@@ -218,11 +236,12 @@ function evaluatePreFix() {
       prefix_stack.push(result);
     }
   }
+  // finally it returns the last remaining number after the loop is finished
   return prefix_stack[0];
 }
 
 function equalClick() {
-  // the operators have to be less than the numbers by 1
+  // the count operators have to be less than the count numbers by 1
   const numbers_count = memory.filter((elem) => elem.type == "number").length;
   const operators_count = memory.length - numbers_count;
   if (operators_count != numbers_count - 1) {
@@ -233,7 +252,7 @@ function equalClick() {
     console.log("if the user has not entred anything yet");
     return;
   }
-  
+
   if (temp_number != "") {
     console.log("if the user has not pressed enter while inputing a number");
     return;
@@ -259,4 +278,3 @@ function equalClick() {
 
   is_showing_results = true;
 }
-
