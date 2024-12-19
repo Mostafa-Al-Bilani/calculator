@@ -3,6 +3,7 @@ let screen_value = [];
 let temp_number = "";
 let is_postfix = true;
 let is_showing_results = false;
+let is_darkmode = true;
 
 document
   .querySelectorAll(".number")
@@ -17,14 +18,22 @@ document
   .forEach((elem) => elem.addEventListener("click", actionClick));
 
 document
-  .getElementById("togglemode")
+  .getElementById("toggle-post-pre")
   .addEventListener("change", toggleModeClick);
 
 document.getElementById("=").addEventListener("click", equalClick);
 
-// document
-//   .querySelectorAll(".button")
-//   .forEach((elem) => elem.addEventListener("click", blink));
+document.getElementById("togglemode").addEventListener("click", toggleMode)
+
+
+
+document
+  .querySelectorAll(".button")
+  .forEach((elem) => elem.addEventListener("click", blink));
+document.getElementById("close").addEventListener("click", closeButton)
+
+document.getElementById("open").addEventListener("click", openButton)
+
 
 function display(value) {
   const screen = document.getElementById("display");
@@ -69,14 +78,15 @@ function toggleModeClick() {
   clear();
 }
 
-// function blink() {
-//   const blinked = this.id;
-//   const blink_color = document.getElementById(blinked);
-//   blink_color.style.backgroundColor = "gray";
-//   setTimeout(() => {
-//     blink_color.style.backgroundColor = "black";
-//   }, 1000);
-// }
+function blink() {
+  console.log("blink");
+  const blinked = this.id;
+  const blink_color = document.getElementById(blinked);
+  blink_color.style.backgroundColor = "gray";
+  setTimeout(() => {
+    blink_color.style.backgroundColor = "#171717";
+  }, 200);
+}
 
 function actionClick() {
   const clicked = this.id;
@@ -123,12 +133,20 @@ function clear() {
 
 function equalClick() {
   // the operators have to be less than the numbers by 1
+  const numbers_count = screen_value.filter(
+    (elem) => elem.type == "number"
+  ).length;
+  const operators_count = screen_value.length - numbers_count;
+  if (operators_count != numbers_count - 1) {
+    return;
+  }
+
   if (screen_value.length == 0) {
     console.log("if the user has not entred anything yet");
     return;
   }
   if (temp_number != "") {
-    console.log("if the use has not pressed enter while inputing a number");
+    console.log("if the user has not pressed enter while inputing a number");
     return;
   }
   if (is_postfix && screen_value[screen_value.length - 1].type == "number") {
@@ -142,12 +160,11 @@ function equalClick() {
   if (is_postfix) {
     const result = evaluatePostFix();
     displayResult(result);
-  }else{
-    const result = evaluatePreFix()
+  } else {
+    const result = evaluatePreFix();
     displayResult(result);
   }
   is_showing_results = true;
-  
 }
 
 function evaluatePostFix() {
@@ -214,4 +231,25 @@ function evaluatePreFix() {
     }
   }
   return prefix_stack[0];
+}
+
+function closeButton() {
+  document.getElementById("tutorial").style.display = "none"
+}
+
+function openButton() {
+   document.getElementById("tutorial").style.display = "flex"
+}
+
+function toggleMode() {
+  
+  is_darkmode = !is_darkmode;
+  if(is_darkmode){
+    document.getElementById("calculator").classList.remove("light")
+  }else {
+    document.getElementById("calculator").classList.add("light")
+    
+  }
+
+
 }

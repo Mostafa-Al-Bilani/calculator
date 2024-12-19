@@ -8,52 +8,118 @@
   </head>
   <body>
     <header></header>
+    
+    <div class="openbutton" id="open">Tutorial</div>
+    <div class="togglemodecontainer">
+      <p>Darkmode/Lightmode</p>
+      <label class="switch mode">
+        <input type="checkbox" id="togglemode" />
+        <span class="slider round"></span>
+      </label>
+    </div>
     <h2>postfix/prefix Calculator</h2>
-    <div class="calculator">
-      <div id="screen">
-        <div id="display"></div>
-        <div id="controls">
-          <div class="togglecontainer">
-            <p>postfix/prefix</p>
-            <label class="switch">
-              <input type="checkbox" id="togglemode" />
-              <span class="slider round"></span>
-            </label>
+      <div class="tutorialcontainer" id="tutorial">
+        <div class="closebutton" id="close">close</div>
+        <div class="row">
+          <div class="boxnote">
+            The <span>C</span> button clears everything and resets the
+            calculator
+          </div>
+        </div>
+        <div class="row">
+          <div class="boxnote">
+            The <span>D</span> button deletes the last inputted character
+          </div>
+        </div>
+        <div class="row">
+          <div class="boxnote">
+            The <span>Enter</span> button is used to input numbers of single or
+            multiple digits
+          </div>
+        </div>
+        <div class="row">
+          <div class="boxnote">
+            The <span>=</span> is disabled when
+            <ul>
+              <li>The user has not entred anything yet</li>
+              <li>The user has not pressed enter while inputing a number</li>
+              <li>
+                The calculator is in postfix mode and the last item is a number
+              </li>
+              <li>
+                The calculator is in prefix mode and the last item is an
+                operator
+              </li>
+              <li>
+                The operators' count are not less than the numbers' count by 1
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="boxnote">
+            The operators<span>(+, -, x, /)</span> are inputted without using
+            enter
+          </div>
+        </div>
+        <div class="row">
+          <div class="boxnote">
+            In <span>postfix</span> mode you can't start with an operator you
+            should input at least two numbers first
+          </div>
+        </div>
+        <div class="row">
+          <div class="boxnote">
+            In <span>prefix</span> mode you can't start with a number you should
+            input an operator first
           </div>
         </div>
       </div>
-      <div class="buttonscontainer">
-        <div class="row">
-          <div class="button action" id="clear">C</div>
-          <div class="button action" id="delete">D</div>
-          <div class="button action" id="enter">Enter</div>
-          <div class="button operator" id="/">/</div>
+      <div class="calculator" id="calculator">
+        <div id="screen">
+          <div id="display"></div>
+          <div id="controls">
+            <div class="togglecontainer">
+              <p>postfix/prefix</p>
+              <label class="switch">
+                <input type="checkbox" id="toggle-post-pre" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
         </div>
-        <div class="row">
-          <div class="button number" id="7">7</div>
-          <div class="button number" id="8">8</div>
-          <div class="button number" id="9">9</div>
-          <div class="button operator" id="*">x</div>
-        </div>
-        <div class="row">
-          <div class="button number" id="4">4</div>
-          <div class="button number" id="5">5</div>
-          <div class="button number" id="6">6</div>
-          <div class="button operator" id="-">-</div>
-        </div>
-        <div class="row">
-          <div class="button number" id="1">1</div>
-          <div class="button number" id="2">2</div>
-          <div class="button number" id="3">3</div>
-          <div class="button operator" id="+">+</div>
-        </div>
-        <div class="row lastrow">
-          <div class="button number" id=".">.</div>
-          <div class="button number" id="0">0</div>
-          <div class="button equal" id="=">=</div>
+        <div class="buttonscontainer">
+          <div class="row">
+            <div class="button action" id="clear">C</div>
+            <div class="button action" id="delete">D</div>
+            <div class="button action" id="enter">Enter</div>
+            <div class="button operator" id="/">/</div>
+          </div>
+          <div class="row">
+            <div class="button number" id="7">7</div>
+            <div class="button number" id="8">8</div>
+            <div class="button number" id="9">9</div>
+            <div class="button operator" id="*">x</div>
+          </div>
+          <div class="row">
+            <div class="button number" id="4">4</div>
+            <div class="button number" id="5">5</div>
+            <div class="button number" id="6">6</div>
+            <div class="button operator" id="-">-</div>
+          </div>
+          <div class="row">
+            <div class="button number" id="1">1</div>
+            <div class="button number" id="2">2</div>
+            <div class="button number" id="3">3</div>
+            <div class="button operator" id="+">+</div>
+          </div>
+          <div class="row lastrow">
+            <div class="button number" id=".">.</div>
+            <div class="button number" id="0">0</div>
+            <div class="button equal" id="=">=</div>
+          </div>
         </div>
       </div>
-    </div>
     <script src="./scripts/app.js"></script>
   </body>
 </html>
