@@ -1,5 +1,6 @@
 let screen_value = [];
 let temp_number = "";
+let is_postfix = true;
 
 document
   .querySelectorAll(".number")
@@ -17,6 +18,12 @@ document
   .querySelectorAll(".switch")
   .forEach((elem) => elem.addEventListener("click", toggleClick));
 
+// document.getElementById("=").addEventListener("click", equalPostFix);
+
+document
+  .querySelectorAll(".button")
+  .forEach((elem) => elem.addEventListener("click", blink));
+
 function display(value) {
   const screen = document.getElementById("display");
   const intial_value = screen.innerHTML;
@@ -24,6 +31,9 @@ function display(value) {
 }
 
 function numberClick() {
+  if (is_postfix == false && screen_value ==[]){
+    return
+  }
   const clicked = this.id;
   temp_number += clicked;
   console.log(temp_number);
@@ -31,7 +41,9 @@ function numberClick() {
 }
 
 function operatorClick() {
-  // if (screen_value.length < 2) return; for postfix
+  if ((is_postfix == true && screen_value.length > 2)) {
+    return;
+  }
   if (temp_number != "") {
     return;
   }
@@ -41,17 +53,25 @@ function operatorClick() {
 }
 
 function toggleClick() {
-  screen_value = [];
-    temp_number = "";
-    const screen = document.getElementById("display");
-    screen.innerHTML = ""
+  is_postfix = !is_postfix;
+  console.log("is_postfix ", is_postfix);
+  clear();
+}
+
+function blink() {
+  const blinked = this.id;
+  const blink_color = document.getElementById(blinked);
+  blink_color.style.backgroundColor = "gray";
+  setTimeout(() => {
+    blink_color.style.backgroundColor = "black";
+  }, 1000);
 }
 
 function actionClick() {
   const clicked = this.id;
   if (clicked == "enter") {
     // when enter is pressed we push the temp number into the array
-    // when enter is empty
+    // when enter is emptyfF
     if (temp_number != "") {
       screen_value.push(temp_number);
       temp_number = "";
@@ -80,11 +100,55 @@ function actionClick() {
       temp_number = temp_number.slice(0, -1);
     }
   } else if (clicked == "clear") {
-    screen_value = [];
-    temp_number = "";
-    const screen = document.getElementById("display");
-    screen.innerHTML = "";
+    clear();
   }
 }
 
-function equal() {}
+function clear() {
+  screen_value = [];
+  temp_number = "";
+  const screen = document.getElementById("display");
+  screen.innerHTML = "";
+}
+
+function equal(clicked) {
+  if(screen_value == []){
+    return
+  }
+  if(temp_number != ""){
+    return
+  }
+  if(is_postfix == true && !isNaN(screen_value[screen_value.length - 1])){
+    return
+  }
+  if(is_postfix ==false && isNaN(screen_value[screen_value.length - 1])){
+    return
+  }
+}
+
+
+
+
+
+
+
+  // const clicked = this.id
+  // if (clicked == "="){
+  // for (value of screen_value){
+  //   if (isNaN(value)) {
+  //     let x = screen_value.pop()
+  //     let y = screen.value.pop()
+  //     if (value == "+")
+  //     } else if (value == '-'){
+  //       stack.push(y - x);
+  //   } else if (value == '*'){
+  //       stack.push(y * x);
+  //   } else if (value == '/'){
+  //       stack.push(y / x);
+  //   }else {
+  //     screen_value.push( parseFloat(value) );
+  //   }
+  //   }
+
+  // }
+  // 
