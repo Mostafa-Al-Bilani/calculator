@@ -14,10 +14,10 @@ h2 {
   font-size: 40px;
   margin-bottom: 30px;
 }
-.boxnote span {
+.box-note span {
   color: red;
 }
-.tutorialcontainer {
+.tutorial-container {
   overflow: auto;
   display: none;
   flex-direction: column;
@@ -31,7 +31,7 @@ h2 {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
 }
-.closebutton {
+.close-button {
   background-color: red;
   color: white;
   width: 50px;
@@ -45,7 +45,7 @@ h2 {
   align-items: center;
   cursor: pointer;
 }
-.openbutton {
+.open-button {
   background-color: green;
   color: white;
   border-radius: 50%;
@@ -59,7 +59,7 @@ h2 {
   border-radius: 10px;
   padding: 10px;
 }
-.boxnote {
+.box-note {
   max-width: 450px;
   width: 90%;
   padding: 20px 20px;
@@ -68,7 +68,7 @@ h2 {
   border-radius: 10px;
 }
 
-.togglemodecontainer {
+.toggle-mode-container {
   position: absolute;
   left: 25px;
   top: 70px;
@@ -97,6 +97,11 @@ h2 {
   background-color: #dbdbe3;
   color: #4e4d52;
 }
+.calculator.light .button.blink{
+  background-color: #636565;
+
+}
+
 .row {
   align-items: center;
   justify-content: space-evenly;
@@ -104,7 +109,7 @@ h2 {
   width: 100%;
   gap: 5px;
 }
-.buttonscontainer {
+.buttons-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -122,6 +127,7 @@ h2 {
   text-align: center;
   border-radius: 50%;
   cursor: pointer;
+  user-select: none;
 }
 .button.operator {
   color: #6dd144;
@@ -135,6 +141,9 @@ h2 {
 }
 .button#clear {
   color: #e17064;
+}
+.button.blink {
+  background-color: rgb(140, 139, 139);
 }
 
 #screen {
@@ -163,12 +172,12 @@ h2 {
   height: 100%;
 }
 @media only screen and (max-width: 768px) {
-  .openbutton {
+  .open-button {
     position: static;
     width: fit-content;
   }
 
-  .togglemodecontainer {
+  .toggle-mode-container {
     position: static;
   }
 }
