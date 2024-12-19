@@ -142,8 +142,12 @@ function equalClick() {
   if (is_postfix) {
     const result = evaluatePostFix();
     displayResult(result);
+  }else{
+    const result = evaluatePreFix()
+    displayResult(result);
   }
   is_showing_results = true;
+  
 }
 
 function evaluatePostFix() {
@@ -177,4 +181,37 @@ function evaluatePostFix() {
     }
   }
   return postfix_stack[0];
+}
+
+function evaluatePreFix() {
+  const prefix_stack = [];
+  //we nee to loop over the array of values from right to left
+  for (let i = screen_value.length - 1; i >= 0; i--) {
+    // we then have to check type of each value
+    const type = screen_value[i].type;
+    const value = screen_value[i].value;
+
+    if (type == "number") {
+      // if it's a number we push into the stach
+      prefix_stack.push(value);
+    } else {
+      // if it's an operator we pop the 2 numbers before it
+      const num1 = prefix_stack.pop();
+      const num2 = prefix_stack.pop();
+      // we evaluate the numbers using the operator
+      let result = 0;
+      if (value == "+") {
+        result = num1 + num2;
+      } else if (value == "-") {
+        result = num1 - num2;
+      } else if (value == "*") {
+        result = num1 * num2;
+      } else {
+        result = num1 / num2;
+      }
+      // we push the new number into the stack
+      prefix_stack.push(result);
+    }
+  }
+  return prefix_stack[0];
 }
