@@ -38,6 +38,17 @@ This project is a calculator built using HTML, CSS, and JavaScript.
 <ul>
   <li>Operators are entered directly without pressing the <code>Enter</code> button.</li>
 </ul>
+<h2>Mode Toggle:</h2>
+<p>
+  The calculator features a toggle switch to select between <b>Postfix</b> and <b>Prefix</b> modes:
+</p>
+<ul>
+  <li>When the toggle is <b>off</b> (to the left), the calculator operates in <b>Postfix Mode</b>.</li>
+  <li>When the toggle is <b>on</b> (to the right), the calculator operates in <b>Prefix Mode</b>.</li>
+</ul>
+<p>
+  The current mode affects the order and rules for entering numbers and operators. Ensure the toggle is set to the desired mode before starting calculations.
+</p>
 
 <h2>Mode-Specific Rules:</h2>
 <h3>Postfix Mode:</h3>
