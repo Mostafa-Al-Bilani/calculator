@@ -19,18 +19,18 @@ document
   .forEach((elem) => elem.addEventListener("click", actionClick));
 
 document
-  .getElementById("toggle-post-pre")
-  .addEventListener("change", toggleModeClick);
+  .querySelectorAll(".button")
+  .forEach((elem) => elem.addEventListener("click", blink));
 
 document.getElementById("=").addEventListener("click", equalClick);
 
 document
-  .getElementById("toggle-theme-mode")
-  .addEventListener("change", toggleThemeMode);
+  .getElementById("toggle-post-pre")
+  .addEventListener("change", toggleModeClick);
 
 document
-  .querySelectorAll(".button")
-  .forEach((elem) => elem.addEventListener("click", blink));
+  .getElementById("toggle-theme-mode")
+  .addEventListener("change", toggleThemeMode);
 
 document.getElementById("close").addEventListener("click", closeButton);
 
@@ -144,7 +144,7 @@ function actionClick() {
       temp_number = "";
       const screen = document.getElementById("display");
       // we add a space between the list items for display purposes
-      screen.innerHTML += " "; 
+      screen.innerHTML += " ";
     }
   } else if (clicked == "delete") {
     // if there is no memory and the value of temp_number is empty there no need for delete
@@ -155,7 +155,7 @@ function actionClick() {
     // if temp_number is not empty then this means we can only remove from screen and not the array
     if (temp_number == "") {
       memory.pop();
-      // we update the display by removing the last item while keeping the spacing 
+      // we update the display by removing the last item while keeping the spacing
       const screen = document.getElementById("display");
       const separate_entries = screen.innerHTML.split(" ");
       separate_entries.splice(separate_entries.length - 2, 1);

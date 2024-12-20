@@ -87,6 +87,19 @@ h2 {
   gap: 15px;
   border: 10px solid white;
 }
+.button.operator {
+  color: #6dd144;
+}
+.button.equal {
+  background-color: #6dd144;
+  color: white;
+  width: 165px;
+  height: 80px;
+  border-radius: 10%;
+}
+.button#clear {
+  color: #e17064;
+}
 
 .calculator.light {
   background-color: white;
@@ -97,11 +110,34 @@ h2 {
   background-color: #dbdbe3;
   color: #4e4d52;
 }
-.calculator.light .button.blink{
+.calculator.light .button.blink {
   background-color: #636565;
-
+}
+.calculator.light .button.equal {
+  background-color: #6dd144;
+  color: white;
+}
+.calculator.light .button#clear {
+  color: #e17064;
+}
+.calculator.light .button.operator{
+  color: #6dd144;
 }
 
+#screen {
+  display: flex;
+  flex-direction: column;
+  background-color: #171717;
+  width: 95%;
+  height: 120px;
+  color: white;
+  margin: auto;
+  border-radius: 5px;
+}
+.calculator.light #screen {
+  background-color: rgb(214, 208, 208);
+  color: #636565;
+}
 .row {
   align-items: center;
   justify-content: space-evenly;
@@ -129,33 +165,11 @@ h2 {
   cursor: pointer;
   user-select: none;
 }
-.button.operator {
-  color: #6dd144;
-}
-.button.equal {
-  background-color: #6dd144;
-  color: white;
-  width: 165px;
-  height: 80px;
-  border-radius: 10%;
-}
-.button#clear {
-  color: #e17064;
-}
+
 .button.blink {
   background-color: rgb(140, 139, 139);
 }
 
-#screen {
-  display: flex;
-  flex-direction: column;
-  background-color: #171717;
-  width: 95%;
-  height: 120px;
-  color: white;
-  margin: auto;
-  border-radius: 5px;
-}
 #controls {
   height: fit-content;
   padding: 8px;
@@ -181,13 +195,6 @@ h2 {
     position: static;
   }
 }
-
-
-
-
-
-
-
 
 /* this css was taken from w3school source: https://www.w3schools.com/howto/howto_css_switch.asp */
 
@@ -253,4 +260,3 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
